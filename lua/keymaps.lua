@@ -1,10 +1,16 @@
 -- normal mode keymaps
-vim.keymap.set("n", "<Leader>e", ":Ex<CR>")
-vim.keymap.set("n", "<Leader>cd", ":cd %:p:h<CR>:pwd<CR>")
-vim.keymap.set("n", "<Leader>`", ":ToggleTerm<CR>")
-vim.keymap.set("n", "<Leader>t", ":ToggleTerm<CR>")
-vim.keymap.set("n", "<Leader>q", ":<cmd>qa<CR>")
+vim.keymap.set("n", "<leader>e", ":Ex<cr>")
+vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
+vim.keymap.set("n", "<leader>`", ":ToggleTerm<cr>")
+vim.keymap.set("n", "<leader>t", ":ToggleTerm<cr>")
+vim.keymap.set("n", "<leader>q", ":<cmd>qa<cr>")
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- terminal mode keymaps
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>")
 
