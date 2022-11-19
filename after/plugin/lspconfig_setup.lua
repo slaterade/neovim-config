@@ -21,3 +21,7 @@ require'lspconfig'.tsserver.setup {
     -- defaults atm
 }
 
+require'lspconfig'.dockerls.setup {
+    -- defaults
+}
+
