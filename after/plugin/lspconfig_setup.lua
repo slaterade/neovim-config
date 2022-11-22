@@ -5,6 +5,8 @@ vim.keymap.set('n', '<leader>rr', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>rt', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>le', vim.diagnostic.enable, opts)
+vim.keymap.set('n', '<leader>ld', vim.diagnostic.disable, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -51,7 +53,7 @@ require 'lspconfig'.sumneko_lua.setup {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim' }
+                globals = { 'vim', 'require', 'print' }
             }
         }
     }
