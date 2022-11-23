@@ -1,7 +1,7 @@
 require 'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
   indent = { enable = true },
-  --[[ensure_installed = {
+  ensure_installed = {
     'bash',
     'c',
     'cmake',
@@ -14,5 +14,5 @@ require 'nvim-treesitter.configs'.setup {
     'toml',
     'typescript',
     'yaml',
-  }--]]
+  }
 }
