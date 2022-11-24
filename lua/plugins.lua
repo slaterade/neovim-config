@@ -18,6 +18,9 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
+  -- git-blame
+  use 'f-person/git-blame.nvim'
+
   -- lualine
   use {
     'nvim-lualine/lualine.nvim',
