@@ -7,12 +7,14 @@ require 'nvim-treesitter.configs'.setup {
     'cmake',
     'cpp',
     'dockerfile',
+    'help',
     'javascript',
     'json',
     'lua',
     'python',
     'toml',
     'typescript',
+    'vim',
     'yaml',
   }
 }
