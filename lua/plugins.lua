@@ -6,8 +6,8 @@ return require('packer').startup(function(use)
   -- lsp config
   use 'neovim/nvim-lspconfig'
 
-  -- tokyo night
-  use 'folke/tokyonight.nvim'
+  -- nightfox
+  use "EdenEast/nightfox.nvim"
 
   -- telescope backend performance
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
