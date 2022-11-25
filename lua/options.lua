@@ -12,3 +12,5 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.shell = "zsh"
 
+vim.g.gitblame_enabled = false
+
