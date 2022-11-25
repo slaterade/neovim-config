@@ -7,7 +7,7 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
 
   -- nightfox
-  use "EdenEast/nightfox.nvim"
+  use 'EdenEast/nightfox.nvim'
 
   -- telescope backend performance
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -18,13 +18,16 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
+  -- nvim-web-devicons
+  use 'nvim-tree/nvim-web-devicons'
+
   -- git-blame
   use 'f-person/git-blame.nvim'
 
   -- lualine
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   }
 
   -- nvim-tresitter
@@ -34,4 +37,5 @@ return require('packer').startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
   end }
+
 end)
