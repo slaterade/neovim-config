@@ -65,6 +65,12 @@ require 'lspconfig'.tsserver.setup {
   flags = lsp_flags,
 }
 
+-- eslint stolen from vscode
+require 'lspconfig'.eslint.setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+
 -- dockerfile language server
 require 'lspconfig'.dockerls.setup {
   on_attach = on_attach,
