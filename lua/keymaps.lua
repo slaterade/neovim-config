@@ -5,6 +5,11 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
 vim.keymap.set("n", "<leader>ts", "setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "<leader>tt", ":ToggleTerm<cr>")
 vim.keymap.set("n", "<leader>tb", ":GitBlameToggle<cr>")
+vim.keymap.set("n", "<c-d>", "<c-d>zz")
+vim.keymap.set("n", "<c-u>", "<c-u>zz")
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
+
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
