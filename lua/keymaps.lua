@@ -2,6 +2,7 @@
 vim.keymap.set("n", "<leader>q", ":<cmd>qa<cr>")
 vim.keymap.set("n", "<leader>ee", ":Ex<cr>")
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
+vim.keymap.set("n", "<leader>cs", ":let @/ = \"\"<cr>") -- clear search term
 vim.keymap.set("n", "<leader>ts", "setlocal spell! spelllang=en_us<cr>")
 vim.keymap.set("n", "<leader>tt", ":ToggleTerm<cr>")
 vim.keymap.set("n", "<leader>tb", ":GitBlameToggle<cr>")

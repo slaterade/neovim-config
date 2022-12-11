@@ -71,6 +71,12 @@ require 'lspconfig'.dockerls.setup {
   flags = lsp_flags,
 }
 
+-- cpp language server
+require 'lspconfig'.clangd.setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+
 -- change border of documentation hover window
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
