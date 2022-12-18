@@ -33,6 +33,16 @@ return require('packer').startup(function(use)
   -- nvim-tresitter
   use 'nvim-treesitter/nvim-treesitter'
 
+  -- vimspector
+  use {
+    "puremourning/vimspector",
+    cmd = { "VimspectorInstall", "VimspectorUpdate" },
+    fn = { "vimspector#Launch()", "vimspector#ToggleBreakpoint", "vimspector#Continue" },
+    config = function()
+      require("config.vimspector").setup()
+    end,
+  }
+
   -- toggleterm
   use { "akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
