@@ -1,4 +1,3 @@
 require('lualine').setup {
-    -- all default atm
+  options = { section_separators = '', component_separators = '' }
 }
-
