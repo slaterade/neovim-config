@@ -2,7 +2,7 @@
 local ks = vim.keymap.set
 
 ks("n", "<leader>q", ":<cmd>qa<cr>")
-ks("n", "<leader>ee", ":Ex")
+ks("n", "<leader>ee", ":Ex<cr>")
 ks("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
 ks("n", "<leader>cs", ":let @/ = \"\"<cr>") -- clear search term
 ks("n", "<leader>ts", "setlocal spell! spelllang=en_us<cr>")
