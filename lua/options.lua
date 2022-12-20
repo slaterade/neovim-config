@@ -29,8 +29,5 @@ vim.opt.shell = "zsh"
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 
--- plugin
-vim.g.gitblame_enabled = false
-
 -- cant remember why
 vim.opt.mouse = ""
