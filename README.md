@@ -5,9 +5,9 @@ neovim config aka dotfiles
 
 ### language server
 - `gl`: show diagnostics in a floating window
+- `lf`: format the current buffer
 - `[d`: move to the previous diagnostic in the current buffer
 - `]d`: move to the next diagnostic in the current buffer
-- `lf`: format the current buffer
 
 ## notes
 
