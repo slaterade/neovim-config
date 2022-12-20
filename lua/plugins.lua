@@ -41,11 +41,11 @@ return require('packer').startup(function(use)
   -- undotree
   use 'mbbill/undotree'
 
+  -- fugitive
+  use 'tpope/vim-fugitive'
+
   -- nvim-web-devicons
   use 'nvim-tree/nvim-web-devicons'
-
-  -- git-blame
-  use 'f-person/git-blame.nvim'
 
   -- lualine
   use {
