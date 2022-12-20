@@ -3,7 +3,7 @@ return require('packer').startup(function(use)
   -- packer can update itself
   use 'wbthomason/packer.nvim'
 
-  -- lsp-zero
+  -- lsp-zero bundle
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -70,5 +70,9 @@ return require('packer').startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
   end }
+
+  -- markdown-preview
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
 end)
