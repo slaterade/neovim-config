@@ -1,5 +1,5 @@
 -- normal mode keymaps
-ks = vim.keymap.set
+local ks = vim.keymap.set
 
 ks("n", "<leader>q", ":<cmd>qa<cr>")
 ks("n", "<leader>ee", ":Ex")
