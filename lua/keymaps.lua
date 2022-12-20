@@ -1,23 +1,28 @@
--- ":Ex<cr>" == vim.cmd.Ex
 -- normal mode keymaps
-vim.keymap.set("n", "<leader>q", ":<cmd>qa<cr>")
-vim.keymap.set("n", "<leader>ee", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
-vim.keymap.set("n", "<leader>cs", ":let @/ = \"\"<cr>") -- clear search term
-vim.keymap.set("n", "<leader>ts", "setlocal spell! spelllang=en_us<cr>")
-vim.keymap.set("n", "<leader>tt", ":ToggleTerm<cr>")
-vim.keymap.set("n", "<leader>tb", ":GitBlameToggle<cr>")
-vim.keymap.set("n", "<c-d>", "<c-d>zz")
-vim.keymap.set("n", "<c-u>", "<c-u>zz")
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
+ks = vim.keymap.set
 
+ks("n", "<leader>q", ":<cmd>qa<cr>")
+ks("n", "<leader>ee", ":Ex")
+ks("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
+ks("n", "<leader>cs", ":let @/ = \"\"<cr>") -- clear search term
+ks("n", "<leader>ts", "setlocal spell! spelllang=en_us<cr>")
+ks("n", "<leader>tt", ":ToggleTerm<cr>")
+ks("n", "<leader>tb", ":GitBlameToggle<cr>")
+ks("n", "<c-d>", "<c-d>zz")
+ks("n", "<c-u>", "<c-u>zz")
+ks("n", "n", "nzz")
+ks("n", "N", "Nzz")
 
+-- telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+ks('n', '<leader>ff', builtin.find_files, {})
+ks('n', '<leader>fg', builtin.live_grep, {})
+ks('n', '<leader>fb', builtin.buffers, {})
+ks('n', '<leader>fh', builtin.help_tags, {})
 
 -- terminal mode keymaps
-vim.keymap.set("t", "<esc>", "<c-\\><c-n>")
+ks("t", "<esc>", "<c-\\><c-n>")
+
+-- commands
+vim.cmd(':command! W w')
+
