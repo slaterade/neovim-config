@@ -16,11 +16,11 @@ local cmp = require('cmp')
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<Left>'] = cmp.mapping.abort(),
   ['<Right>'] = cmp.mapping.complete(),
-  ['<Tab>'] = cmp.mapping.confirm(),
+  --['<Tab>'] = cmp.mapping.confirm(),
 })
 
 -- disable completion with enter key tyvm
-cmp_mappings['<CR>'] = nil
+--cmp_mappings['<CR>'] = nil
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
