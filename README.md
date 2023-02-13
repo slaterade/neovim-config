@@ -46,6 +46,10 @@ See [:help vim.diagnostic.goto_next()](https://neovim.io/doc/user/diagnostic.htm
 ### undotree
 * `<leader>u`: undo (tree) visualization
 
+### reminders
+
+* `:only`: close all windows except the current one
+
 ## notes
 
 Update packages headless in CI/CD

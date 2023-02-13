@@ -7,9 +7,9 @@ lsp.ensure_installed({
   'clangd',
   'dockerls',
   'eslint',
+  'lua_ls',
   'marksman',
   'pyright',
-  'sumneko_lua',
   'tsserver',
 })
 
