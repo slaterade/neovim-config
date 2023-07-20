@@ -5,9 +5,10 @@ kmap("n", "<leader>q", ":<cmd>qa<cr>")
 kmap("n", "<leader>ee", ":Ex<cr>")
 kmap("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>")
 kmap("n", "<leader>cs", ":let @/ = \"\"<cr>") -- clear search term
-kmap("n", "<leader>ts", "setlocal spell! spelllang=en_us<cr>")
+kmap("n", "<leader>ts", ":setlocal spell! spelllang=en_us<cr>")
 kmap("n", "<leader>tt", ":ToggleTerm<cr>")
 kmap("n", "<leader>tb", ":GitBlameToggle<cr>")
+kmap("n", "<leader>tl", ":set nonumber! norelativenumber!<cr>")
 kmap("n", "<leader>gs", vim.cmd.Git)
 kmap("n", "<c-d>", "<c-d>zz")
 kmap("n", "<c-u>", "<c-u>zz")
@@ -30,5 +31,5 @@ kmap("v", "K", ":m '<-2<cr>gv=gv")
 kmap("t", "<esc>", "<c-\\><c-n>")
 
 -- commands
-vim.cmd(':command! W w')
-
+vim.cmd('command W w')
+vim.cmd('command Q q')
