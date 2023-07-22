@@ -8,7 +8,6 @@ require 'nvim-treesitter.configs'.setup {
         'cpp',
         'css',
         'dockerfile',
-        'help',
         'javascript',
         'json',
         'lua',
