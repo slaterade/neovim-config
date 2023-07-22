@@ -25,7 +25,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.wrap = false
 
 -- misc
-vim.opt.shell = "zsh"
+--vim.opt.shell = "zsh"
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 
