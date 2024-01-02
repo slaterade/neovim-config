@@ -1,65 +1,94 @@
-# neovim-config
-neovim config aka dotfiles
+# config-nvim
 
-## keybinds
-
-### language server
-* `lf`: format the current buffer
-
-* `K`: Displays hover information about the symbol under the cursor in a floating window.
-See [:help vim.lsp.buf.hover()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.hover()).
-
-* `gd`: Jumps to the definition of the symbol under the cursor.
-See [:help vim.lsp.buf.definition()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.definition()).
-
-* `gD`: Jumps to the declaration of the symbol under the cursor. Some servers don't implement this feature.
-See [:help vim.lsp.buf.declaration()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.declaration()).
-
-* `gi`: Lists all the implementations for the symbol under the cursor in the quickfix window.
-See [:help vim.lsp.buf.implementation()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.implementation()).
-
-* `go`: Jumps to the definition of the type of the symbol under the cursor.
-See [:help vim.lsp.buf.type_definition()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.type_definition()).
-
-* `gr`: Lists all the references to the symbol under the cursor in the quickfix window.
-See [:help vim.lsp.buf.references()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.references()).
-
-* `<Ctrl-k>`: Displays signature information about the symbol under the cursor in a floating window.
-See [:help vim.lsp.buf.signature_help()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.signature_help()).
-
-* `<F2>`: Renames all references to the symbol under the cursor.
-See [:help vim.lsp.buf.rename()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.rename()).
-
-* `<F4>`: Selects a code action available at the current cursor position.
-See [:help vim.lsp.buf.code_action()](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.code_action()).
-
-* `gl`: Show diagnostics in a floating window.
-See [:help vim.diagnostic.open_float()](https://neovim.io/doc/user/diagnostic.html#vim.diagnostic.open_float()).
-
-* `[d`: Move to the previous diagnostic in the current buffer.
-See [:help vim.diagnostic.goto_prev()](https://neovim.io/doc/user/diagnostic.html#vim.diagnostic.goto_prev()).
-
-* `]d`: Move to the next diagnostic.
-See [:help vim.diagnostic.goto_next()](https://neovim.io/doc/user/diagnostic.html#vim.diagnostic.goto_next()).
-
-
-### undotree
-* `<leader>u`: undo (tree) visualization
-
-### reminders
-
-* `:only`: close all windows except the current one
-
-## notes
-
-Update packages headless in CI/CD
+Install Neovim Configuration
 ```bash
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+git clone git@gitlab.blueorigin.com:rslater/config-nvim ~/.config/nvim
 ```
 
-Configure git to use neovim diff by default
+# file structure
+```
+├── init.lua
+└── lua
+    ├── keymaps.lua
+    ├── options.lua
+    └── plugins.lua
+```
+
+## keymaps.lua
+Set the general keyboard shortcut mappings. Language server keymaps are handled
+in the plugins.lua and activated only when attached to a LSP server.
+
+## options.lua
+Options such as relative line numbers, swap files, word wrap, tabs, etc.
+
+## plugins.lua
+Plugins and their configurations.
+
+- https://github.com/folke/lazy.nvim
+- https://github.com/EdenEast/nightfox.nvim
+- https://github.com/VonHeikemen/lsp-zero.nvim
+- https://github.com/nvim-telescope/telescope.nvim
+- https://github.com/mbbill/undotree
+- https://github.com/tpope/vim-fugitive
+- https://github.com/nvim-lualine/lualine.nvim
+- https://github.com/nvim-treesitter/nvim-treesitter
+
+# notes
+## update plugins, tree sitters, language servers
+
+```
+:Lazy
+:TSUpdate
+:Mason
+```
+
+## build neovim from source
+```bash
+git clone https://github.com/neovim/neovim
+cd neovim
+git checkout stable
+make CMAKE_BUILD_TYPE=Release
+sudo make install
+```
+
+## compare branches
+```
+git difftool <otherbranch>
+```
+
+## nvim -d <file1> <file2>
+
+```
+:h copy-diffs
+```
+
+```
+]c               - advance to the next block with differences
+[c               - reverse search for the previous block with differences
+do (diff obtain) - bring changes from the other file to the current file
+dp (diff put)    - send changes from the current file to the other file
+zo               - unfold/unhide text
+zc               - refold/rehide text
+zr               - unfold both files completely
+zm               - fold both files completely
+```
+
+visual mode put
+```
+:'<,'>diffput
+```
+
+## old notes
+
+use neovim for git difftool
 ```bash
 git config --global diff.tool nvimdiff
 git config --global difftool.prompt false
 ```
 
+macos homebrew
+```bash
+brew install ripgrep
+brew install fd
+brew install lua-language-server
+```

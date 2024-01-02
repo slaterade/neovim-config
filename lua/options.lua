@@ -1,33 +1,33 @@
+local opt = vim.opt
+
 -- line numbers
-vim.opt.nu = true
-vim.opt.relativenumber = true
+opt.nu = true
+opt.relativenumber = true
 
 -- tabs and indent
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.smartindent = true
 
 -- search
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+opt.hlsearch = true
+opt.incsearch = true
 
 -- undo and backup
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
-vim.opt.undofile = true
+opt.swapfile = false
+opt.backup = false
+opt.undofile = true
 
 -- scroll vertical and horizontal
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.wrap = false
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.wrap = false
 
 -- misc
---vim.opt.shell = "zsh"
-vim.opt.termguicolors = true
-vim.opt.updatetime = 50
+opt.termguicolors = true
+opt.updatetime = 50
 
 -- cant remember why
-vim.opt.mouse = ""
+opt.mouse = ""
