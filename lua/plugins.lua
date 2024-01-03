@@ -1,76 +1,131 @@
--- managed plugins
-return require('packer').startup(function(use)
-    -- packer can update itself
-    use 'wbthomason/packer.nvim'
+-- bootstrap lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-    -- lsp-zero v2
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {                            -- Optional
-                'williamboman/mason.nvim',
-                run = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },     -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
-        }
-    }
+-- plugins and their configs
+local plugins = {
 
     -- nightfox
-    use 'EdenEast/nightfox.nvim'
+    {
+        'EdenEast/nightfox.nvim',
+        lazy = false,
+        priority = 1000, -- load before all other start plugins
+        config = function()
+            require('nightfox').setup({
+                options = {
+                    transparent = true,
+                    dim_inactive = true,
+                }
+            })
+            vim.cmd([[colorscheme nightfox]])
+        end,
+    },
 
-    -- telescope backend performance
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    -- neodev
+    { "folke/neodev.nvim", opts = {} },
 
-    -- telescope
-    use {
-        'nvim-telescope/telescope.nvim', branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
-
-    -- undotree
-    use 'mbbill/undotree'
-
-    -- fugitive
-    use 'tpope/vim-fugitive'
+    -- lsp-zero
+    {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        dependencies = {
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'neovim/nvim-lspconfig',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/nvim-cmp',
+            'L3MON4D3/LuaSnip',
+        },
+        config = function()
+            local lsp = require("lsp-zero")
+            lsp.on_attach(function(_, bufnr)
+                local opts = { buffer = bufnr, remap = false }
+                -- see :help lsp-zero-keybindings
+                -- to learn the available actions
+                lsp.default_keymaps({ buffer = bufnr })
+                vim.keymap.set('v', '<Leader>gq', vim.cmd.LspZeroFormat, opts)
+                vim.keymap.set('n', '<leader>gq', vim.cmd.LspZeroFormat, opts)
+                vim.keymap.set('n', '<leader>gh', ":ClangdSwitchSourceHeader<cr>")
+                vim.diagnostic.config({virtual_text = false})
+            end)
+            require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+            require('mason').setup({})
+            require('mason-lspconfig').setup({
+                ensure_installed = {},
+                handlers = {
+                    lsp.default_setup,
+                },
+            })
+        end,
+    },
 
     -- nvim-web-devicons
-    use 'nvim-tree/nvim-web-devicons'
+    { 'nvim-tree/nvim-web-devicons', lazy = true },
+
+    -- telescope backend performance fuzzy finder
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+
+    -- telescope
+    {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('telescope').load_extension('fzf')
+        end,
+    },
+
+    -- undotree
+    { 'mbbill/undotree' },
+
+    -- fugitive
+    { 'tpope/vim-fugitive' },
 
     -- lualine
-    use {
+    {
         'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-    }
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = true,
+    },
 
     -- nvim-tresitter
-    use 'nvim-treesitter/nvim-treesitter'
-
-    -- vimspector
-    use {
-        "puremourning/vimspector",
-        cmd = { "VimspectorInstall", "VimspectorUpdate" },
-        fn = { "vimspector#Launch()", "vimspector#ToggleBreakpoint", "vimspector#Continue" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
         config = function()
-            require("config.vimspector").setup()
+            require("nvim-treesitter.configs").setup {
+                highlight = { enable = true, },
+                ensure_installed = {
+                    'bash',
+                    'c',
+                    'cmake',
+                    'cpp',
+                    'css',
+                    'dockerfile',
+                    'javascript',
+                    'json',
+                    'lua',
+                    'markdown',
+                    'python',
+                    'toml',
+                    'tsx',
+                    'typescript',
+                    'vim',
+                    'yaml',
+                }
+            }
         end,
-    }
+    },
+}
 
-    -- markdown-preview
-    vim.g.mkdp_port = "8000"
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = "cd app && npm install",
-        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
-        ft = { "markdown" },
-    })
-end)
+require("lazy").setup(plugins)
