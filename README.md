@@ -1,29 +1,12 @@
 # config-nvim
+Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.
 
 Install Neovim Configuration
 ```bash
 git clone git@gitlab.blueorigin.com:rslater/config-nvim ~/.config/nvim
 ```
 
-# file structure
-```
-├── init.lua
-└── lua
-    ├── keymaps.lua
-    ├── options.lua
-    └── plugins.lua
-```
-
-## keymaps.lua
-Set the general keyboard shortcut mappings. Language server keymaps are handled
-in the plugins.lua and activated only when attached to a LSP server.
-
-## options.lua
-Options such as relative line numbers, swap files, word wrap, tabs, etc.
-
-## plugins.lua
-Plugins and their configurations.
-
+## plugins
 - https://github.com/folke/lazy.nvim
 - https://github.com/EdenEast/nightfox.nvim
 - https://github.com/VonHeikemen/lsp-zero.nvim
@@ -38,7 +21,6 @@ Plugins and their configurations.
 
 ```
 :Lazy
-:TSUpdate
 :Mason
 ```
 
@@ -86,9 +68,3 @@ git config --global diff.tool nvimdiff
 git config --global difftool.prompt false
 ```
 
-macos homebrew
-```bash
-brew install ripgrep
-brew install fd
-brew install lua-language-server
-```
