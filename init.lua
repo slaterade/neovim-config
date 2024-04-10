@@ -41,6 +41,7 @@ opt.updatetime = 50
 -- cant remember why
 opt.mouse = ""
 
+
 -------------
 -- PLUGINS --
 -------------
@@ -100,15 +101,24 @@ local plugins = {
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
                 lsp.default_keymaps({ buffer = bufnr })
-                vim.keymap.set('v', '<Leader>gq', vim.cmd.LspZeroFormat, opts)
-                vim.keymap.set('n', '<leader>gq', vim.cmd.LspZeroFormat, opts)
+                vim.keymap.set('v', '<Leader>gf', vim.lsp.buf.format, opts)
+                vim.keymap.set('n', '<leader>gf', vim.lsp.buf.format, opts)
+                vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, opts)
                 vim.keymap.set('n', '<leader>gh', ":ClangdSwitchSourceHeader<cr>")
                 vim.diagnostic.config({virtual_text = false})
             end)
             require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+            require('lspconfig').clangd.setup {} -- install clangd outside of mason
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = {},
+                ensure_installed = {
+                    "bashls",
+                    "cmake",
+                    "dockerls",
+                    "marksman",
+                    "pyright",
+                },
+                automatic_installation = { exclude = { "clangd" } },
                 handlers = {
                     lsp.default_setup,
                 },
